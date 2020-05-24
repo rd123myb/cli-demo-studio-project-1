@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor Student
+actor Teacher
+actor Ob3Admin
+
+  Student -- (interactOb3Doc)
+  Teacher -- (interactOb3Doc)
+  (CLI) .> (monitorUserActivity) : <<extends>>
+  (helpMenu) .> (CLI) : extends
+  (modifyDatabase) ..> (monitorUserActivity) : <<includes>>
+  (CLI) -- Ob3Admin
+   interactOb3Doc ..> modifyDatabase: <<includes>>
+  (visualiseData) ..> (CLI) : <<extends>>
+  Teacher -- (visualiseData)  
+  Student -- (visualiseData)
+  (monitorUserActivity) ..> (userComments) <<includes>>
+  (monitorUserActivity) ..> (userViews)  <<includes>>
+  (monitorUserActivity) ..> (UserTimeSpent)  <<includes>>
+  
+@enduml
